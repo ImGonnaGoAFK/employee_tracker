@@ -87,7 +87,7 @@ function run() {
                         }
                     ])
                     .then((data) => {
-                        pool.query(`INSERT INTO role (title, salary, department) VALUES (\'${data.roleAdd}\', ${data.roleSalary}), ${data.roleDept};`, function () {
+                        pool.query(`INSERT INTO role (title, salary, department) VALUES ('${data.roleAdd}', ${data.roleSalary}), ${data.roleDept};`, function () {
                             console.log('Role added!');
                         })
                         run();
@@ -119,9 +119,10 @@ function run() {
                         }
                     ])
                     .then((data) => {
-                        pool.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${data.empFirst}', '${data.empLast}', ${data.empRoleId}, ${data.managerID})`, function () {
+                        pool.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${data.empFirst}', '${data.empLast}', ${data.empRoleId}, ${data.managerId})`, function () {
                             console.log('Employee added!');
                         })
+                        // console.log(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${data.empFirst}', '${data.empLast}', ${data.empRoleId}, ${data.managerId})`)
                         run();
                     })
 
