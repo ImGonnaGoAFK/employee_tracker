@@ -87,10 +87,11 @@ function run() {
                         }
                     ])
                     .then((data) => {
-                        pool.query(`INSERT INTO role (title, salary, department) VALUES ('${data.roleAdd}', ${data.roleSalary}), ${data.roleDept};`, function () {
+                        pool.query(`INSERT INTO role (title, salary, department) VALUES ('${data.roleAdd}', ${data.roleSalary}, ${data.roleDept})`, function () {
                             console.log('Role added!');
                         })
                         run();
+                        // console.log(`INSERT INTO role (title, salary, department) VALUES ('${data.roleAdd}', ${data.roleSalary}, ${data.roleDept})`);
                     })
             }
 
