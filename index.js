@@ -4,7 +4,7 @@ const path = require("path");
 const fs = require('fs');
 const { type } = require('os');
 const { exit } = require('process');
-const {menuQuestions, addDeptQuestions, addRoleQuestions, addEmployeeQuestions, updateEmpQuestions} = require('./questions')
+const { menuQuestions, addDeptQuestions, addRoleQuestions, addEmployeeQuestions, updateEmpQuestions } = require('./questions')
 
 const pool = new Pool(
     {
@@ -20,10 +20,8 @@ pool.connect();
 function run() {
     return inquirer
         .prompt(menuQuestions)
-
         .then((data) => {
             const userChoice = data.userAction;
-
             if (userChoice === 'View All Departments') {
                 pool.query('SELECT * FROM department', function (err, { rows }) {
                     console.table(rows);
@@ -31,21 +29,18 @@ function run() {
                 })
 
             }
-
             else if (userChoice === 'View All Roles') {
                 pool.query('SELECT * FROM role', function (err, { rows }) {
                     console.table(rows);
                     run();
                 })
             }
-
             else if (userChoice === 'View All Employees') {
                 pool.query('SELECT * FROM employee', function (err, { rows }) {
                     console.table(rows);
                     run();
                 })
             }
-
             else if (userChoice === 'Add a Department') {
                 return inquirer
                     .prompt(addDeptQuestions)
@@ -56,7 +51,6 @@ function run() {
                         })
                     })
             }
-
             else if (userChoice === 'Add a Role') {
                 return inquirer
                     .prompt(addRoleQuestions)
@@ -67,7 +61,6 @@ function run() {
                         })
                     })
             }
-
             else if (userChoice === 'Add an Employee') {
                 return inquirer
                     .prompt(addEmployeeQuestions)
@@ -80,7 +73,6 @@ function run() {
                     })
 
             }
-
             else if (userChoice === 'Update an Employee\'s Role') {
                 return inquirer
                     .prompt(updateEmpQuestions)
@@ -91,7 +83,6 @@ function run() {
                         })
                     })
             }
-
             else {
                 exit();
             }
